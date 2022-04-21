@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="images/favicon.png" style="width: 80%;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><a href="#">List des utilisateurs</a></li>
+                <li><a href="#">Liste des calendriers</a></li>
+                <li><a href="#">Ecran de saisie des objectifs</a></li>
+                <li><a href="#">Calendrier</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<h2 class="text-center">DASHBOARD</h2>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card panel panel-default">
+                <div class="card-body text-center">
+                    <h3 class="card-title" style="color: orange">Mobile</h3>
+                    <p class="card-text">Mobile pr&eacute;pay&eacute;</p>
+                    <div class="panel-body"><a href="#" class="btn btn-primary">Plus de d&eacute;tails</a></div>
+                    <div class="panel-footer">2000 unit&eacute;s</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card panel panel-default">
+                <div class="card-body text-center">
+                    <h3 class="card-title" style="color: orange">Mobile</h3>
+                    <p class="card-text">Mobile postpay&eacute;</p>
+                    <div class="panel-body"><a href="#" class="btn btn-primary">Plus de d&eacute;tails</a></div>
+                    <div class="panel-footer">2000 unit&eacute;s</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card panel panel-default">
+                <div class="card-body text-center">
+                    <h3 class="card-title" style="color: #8A2BE2">Fixe</h3>
+                    <p class="card-text">Fixe</p>
+                    <div class="panel-body"><a href="#" class="btn btn-primary">Plus de d&eacute;tails</a></div>
+                    <div class="panel-footer">30 unit&eacute;s</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card panel panel-default">
+                <div class="card-body text-center">
+                    <h3 class="card-title" style="color: green">Internet</h3>
+                    <p class="card-text">Fibre optique</p>
+                    <div class="panel-body"><a href="#" class="btn btn-primary">Plus de d&eacute;tails</a></div>
+                    <div class="panel-footer">30 unit&eacute;s</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card panel panel-default">
+                <div class="card-body text-center">
+                    <h3 class="card-title" style="color: green">Internet</h3>
+                    <p class="card-text">ADSL</p>
+                    <div class="panel-body"><a href="#" class="btn btn-primary">Plus de d&eacute;tails</a></div>
+                    <div class="panel-footer">2000 unit&eacute;s</div>
+                </div>
+            </div>
+        </div>
+<!--        <div class="col-sm-4">-->
+<!--            <div class="panel panel-primary text-center">-->
+<!--                <div class="panel-heading">Mobile</div>-->
+<!--                <div class="panel-body">Mobile prepaye</div>-->
+<!--                <div class="panel-footer"><button type="button" class="btn btn-primary">Plus de d&eacute;tails</button></div>-->
+<!--                <div class="panel-body">300</div>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div><br><br>
+
+<footer class="container-fluid text-center" style="height: 2px;">
+    <p></p>
+</footer>
+
+</body>
+</html>

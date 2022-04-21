@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajout des objectifs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    #obmbh input{
+    font-size: x-small;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    }
+
+  </style>
+    <script>
+        function val() {
+            var elms = document.querySelectorAll("[id='year']");
+            d = document.getElementById("select_id").value;
+            document.getElementById("year2").innerHTML = d;
+            for(var i = 0; i < elms.length; i++)
+                elms[i].innerHTML = d;
+        }
+        function val1() {
+            var elms2 = document.querySelectorAll("[id='produit']");
+            d = document.getElementById("select_id1").value;
+            document.getElementById("produit2").innerHTML = d;
+            for(var i = 0; i < elms2.length; i++)
+                elms2[i].innerHTML = d;
+        }
+        function val2() {
+            var elms3 = document.querySelectorAll("[id='sousproduit']");
+            d = document.getElementById("select_id2").value;
+            document.getElementById("sousproduit2").innerHTML = d;
+            for(var i = 0; i < elms3.length; i++)
+                elms3[i].innerHTML = d;
+        }
+        function findTotal(){
+            var arr = document.getElementsByName('qty');
+            var tot=0;
+            for(var i=0;i<arr.length;i++){
+                if(parseInt(arr[i].value))
+                    tot += parseInt(arr[i].value);
+            }
+            // document.getElementById('total').value = tot;
+        }
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="images/favicon.png" style="width: 80%;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">List des utilisateurs</a></li>
+                <li><a href="#">Liste des calendriers</a></li>
+                <li class="active"><a href="#">Ecran de saisie des objectifs</a></li>
+                <li><a href="#">Calendrier</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h3 class="text-center">Ajouter un objectif</h3>
+    <br>
+    <table class="table table-striped">
+        <tr>
+            <td>Utilisateur : <strong>XXXXXX</strong></td>
+            <td>Entit&eacute; : <strong>XXXXXX</strong></td>
+        </tr>
+    </table>
+    <form th:action="@{/saveobjectif}" method="post">
+        <div th:object="${objectif}">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="select_id">Ann&eacute;e</label>
+                <select class="form-control" onchange="val()" id="select_id" th:field="*{year}">
+                    <option th:value="'2021'" selected>2021</option>
+                    <option th:value="'2020'">2020</option>
+                    <option th:value="'2019'">2019</option>
+                    <option th:value="'2018'">2018</option>
+                    <option th:value="'2017'">2017</option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="select_id1">Produit</label>
+                <select id="select_id1" onchange="val1()" class="form-control" th:field="*{category}">
+                    <option th:value="'Mobile postpay&eacute;'" selected>Mobile postpay&eacute;</option>
+                    <option th:value="'Mobile prepay&eacute;'">Mobile prepay&eacute;</option>
+                    <option th:value="'Fixe'">Fixe</option>
+                    <option th:value="'ADSL'">ADSL</option>
+                    <option th:value="'Fibre optique'">Fibre optique</option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="select_id2">Sous produit</label>
+                <select id="select_id2" onchange="val2()" class="form-control" th:field="*{product}">
+                    <option th:value="'NA Mobile postpay&eacute;'" selected>NA Mobile postpay&eacute;</option>
+                    <option th:value="'NA Mobile prepay&eacute;'">NA Mobile prepay&eacute;</option>
+                    <option th:value="'NA Fixe'">NA Fixe</option>
+                    <option th:value="'NA ADSL'">NA ADSL</option>
+                    <option th:value="'NA Fibre optique'">Fibre optique</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-group col-md-7">
+                <label for="objectif">Choisir un objectif</label>
+                <select id="objectif" class="form-control" th:field="*{objectif}">
+                    <option th:value="'Objectif Budgetaire Brut HT'" selected>Objectif Budgetaire Brut HT</option>
+                </select>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="objectifvalue">Objectif</label>
+                <input type="number" class="form-control" id="objectifvalue" th:field="*{total}">
+            </div>
+        </div>
+        <div class="form-group">
+            <h4>Objectif Budgetaire annuel Brut HT</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Ann&eacute;e</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Sous produit</th>
+                    <th scope="col">Agadir</th>
+                    <th scope="col">Casablanca</th>
+                    <th scope="col">Fes</th>
+                    <th scope="col">Marrakech</th>
+                    <th scope="col">Oujda</th>
+                    <th scope="col">Rabat</th>
+                    <th scope="col">Settat</th>
+                    <th scope="col">Tanger</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row" id="year2">-</th>
+                    <td id="produit2">-</td>
+                    <td id="sousproduit2">-</td>
+                    <input type="text" th:field="*{january}"  th:value="100" hidden>
+                    <input type="text" th:field="*{february}"  th:value="100" hidden>
+                    <input type="text" th:field="*{march}"  th:value="100" hidden>
+                    <input type="text" th:field="*{april}"  th:value="100" hidden>
+                    <input type="text" th:field="*{may}"  th:value="100" hidden>
+                    <input type="text" th:field="*{june}"  th:value="100" hidden>
+                    <input type="text" th:field="*{july}"  th:value="100" hidden>
+                    <input type="text" th:field="*{august}"  th:value="100" hidden>
+                    <input type="text" th:field="*{september}"  th:value="100" hidden>
+                    <input type="text" th:field="*{october}"  th:value="100" hidden>
+                    <input type="text" th:field="*{november}"  th:value="100" hidden>
+                    <input type="text" th:field="*{december}"  th:value="100" hidden>
+                    <input type="text" th:field="*{createdBy}"  th:value="${user.username}" hidden>
+                    <input type="text" th:field="*{updatedBy}"  th:value="${user.username}" hidden>
+                    <input type="text" th:field="*{createdAt}"  th:value="'2021-08-31'" hidden>
+                    <input type="text" th:field="*{updatedAt}"  th:value="'2021-08-31'" hidden>
+                    <input type="text" th:field="*{level}"  th:value="${user.role}" hidden>
+                    <input type="text" th:field="*{entity}"  th:value="${user.entity}" hidden>
+                    <td><input type="number" class="form-control" id="objectifvalue1" onblur="findTotal()" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                    <td><input type="number" class="form-control" id="objectifvalue1" value="33000"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div></div>
+        <div class="form-group">
+            <h4>Objectif Budgetaire mensuel Brut HT</h4>
+            <small>
+            <table class="table" style="font-size: x-small;" id="obmbh">
+                <thead>
+                <tr>
+                    <th scope="col">DR</th>
+                    <th scope="col">Janvier</th>
+                    <th scope="col">F&eacute;vrier</th>
+                    <th scope="col">Mars</th>
+                    <th scope="col">Avril</th>
+                    <th scope="col">Mai</th>
+                    <th scope="col">Juin</th>
+                    <th scope="col">Juillet</th>
+                    <th scope="col">Ao&ucirc;t</th>
+                    <th scope="col">Septembre</th>
+                    <th scope="col">Octobre</th>
+                    <th scope="col">Novembre</th>
+                    <th scope="col">D&eacute;cembre</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody th:if="${user.role == 'DVGP' and user.entity == 'DVGP'}">
+                <tr th:each="entity, itemStat : ${entities}" th:object="${objectifDTO}">
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].createdBy}"  th:value="${user.username}" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].updatedBy}"  th:value="${user.username}" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].createdAt}"  th:value="2021-08-31" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].updatedAt}"  th:value="2021-08-31" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].year}"  th:value="'2019'" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].level}"  th:value="${user.role}" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].entity}"  th:value="${user.entity}" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].category}"  th:value="'Fixe'" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].product}"  th:value="'Fixe'" hidden>
+                    <input type="text" th:field="*{objectifs[__${itemStat.index}__].objectif}"  th:value="'Objectif Budgetaire Brut HT'" hidden>
+                    <td th:text="${entity.name}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input12" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].january}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input1" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].february}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input3" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].march}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input4" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].april}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input5" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].may}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input6" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].june}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input7" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].july}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input8" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].august}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input9" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].september}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input10" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].october}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input11" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].november}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" id="input2" onblur="findTotal()" name="qty" th:field="*{objectifs[__${itemStat.index}__].december}"></td>
+                    <td><input type="number" style="font-size: x-small;" class="form-control input-sm" name="total" id="total" th:field="*{objectifs[__${itemStat.index}__].total}"></td>
+                </tr>
+                </tbody>
+            </table></small>
+        </div>
+        <div class="form-row">
+            <div class="text-center">
+                <input type="submit" class="btn btn-info" value="+ Ajouter">
+            </div>
+            <br>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>

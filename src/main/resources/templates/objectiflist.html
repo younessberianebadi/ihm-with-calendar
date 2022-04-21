@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des objectifs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      position: absolute;
+      bottom: 0%;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="images/favicon.png" style="width: 80%;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Dashboard</a></li>
+                <li class="active"><a href="#">Liste des utilisateurs</a></li>
+                <li><a href="#">Liste des calendriers</a></li>
+                <li><a href="#">Ecran de saisie des objectifs</a></li>
+                <li><a href="#">Calendrier</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h3 class="card-header text-center">Liste des objectifs</h3>
+                <br>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Utilisateur : <strong>XXXXXX</strong></td>
+                        <td>Entit&eacute; : <strong>XXXXXX</strong></td>
+                    </tr>
+                </table>
+                <div class="card-body">
+                    <table id="users_table" class="table table-striped">
+                        <tr>
+                            <th>Ann&eacute;e</th>
+                            <th>Produit</th>
+                            <th>Sous-produit</th>
+                            <th>Objectif</th>
+                            <th>Total</th>
+                            <th>Actions</th>
+                        </tr>
+                        <tr th:each="objectif : ${objectifs}">
+                            <td th:text="${objectif.year}"></td>
+                            <td th:text="${objectif.category}"></td>
+                            <td th:text="${objectif.product}"></td>
+                            <td th:text="${objectif.objectif}"></td>
+                            <td th:text="${objectif.total}"></td>
+                            <td><a href="#" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-pencil"></span></a> <a href="#" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        </tr>
+                    </table>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Ajouter</a>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span> Upload</a>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center" style="height: 2px;">
+    <p></p>
+</footer>
+</body>
+</html>

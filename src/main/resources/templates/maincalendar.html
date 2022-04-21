@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calendrier</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">-->
+    <link rel="stylesheet" href="css/demo.css"/>
+    <link rel="stylesheet" href="css/theme3.css"/>
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+      position: absolute;
+      bottom: 0%;
+    }
+    th, td{
+    width: 150px;
+    }
+    th{
+    text-align: center;
+    }
+    td{
+    height: 150px;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="images/favicon.png" style="width: 80%;"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">List des utilisateurs</a></li>
+                <li><a href="#">Liste des calendriers</a></li>
+                <li><a href="#">Ecran de saisie des objectifs</a></li>
+                <li class="active"><a href="#">Calendrier</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+<h3 class="text-center">Calendrier</h3>
+    <div id="caleandar">
+
+    </div>
+
+    <script type="text/javascript" src="js/caleandar.js"></script>
+    <script th:inline="javascript">
+        var events = [
+  {'Date': new Date(2021, 7, 21), 'Title': 'F&ecirc;te de la jeunesse'},
+  [# th:each="event : ${events}"]
+  {'Date': new Date([[${event.date2.getYear()}]], [[${event.date2.getMonthValue()}]], [[${event.date2.getDayOfMonth()}]]), 'Title': [[${event.title}]]},
+[/]
+  {'Date': new Date(2016, 6, 27), 'Title': '25 year anniversary', 'Link': 'https://www.google.com.au/#q=anniversary+gifts'},
+];
+var settings = {};
+var element = document.getElementById('caleandar');
+caleandar(element, events, settings);
+    </script>
+    <div class="text-center">
+        <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-plus"></span> Ajouter un jour f&eacute;ri&eacute;</a>
+        <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Modifier un jour f&eacute;ri&eacute;</a>
+        <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-trash"></span> Supprimer un jour f&eacute;ri&eacute;</a>
+    </div>
+    <br>
+    <div class="text-center">
+        <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-save"></span> Importer</a>
+    </div>
+    <br>
+    <div class="text-center">
+        <a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-open"></span> Exporter</a>
+    </div>
+    <br>
+</div>
+
+<footer class="container-fluid text-center" style="height: 2px;">
+    <p></p>
+</footer>
+</body>
+</html>
